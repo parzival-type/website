@@ -94,6 +94,7 @@
       width: 340px;
       height: 100%;
       pointer-events: none;
+      z-index: 2;
     }
 
     .geo-block .b1 {
@@ -170,7 +171,7 @@
       height: 310px;
       border-radius: 68% 32% 54% 46% / 60% 44% 56% 40%;
       overflow: hidden;
-      border: 4px solid var(--green-pale);
+      border: 4px solid var(--green-dark);
       box-shadow: 0 8px 32px rgba(27,67,50,0.18);
       margin-bottom: 28px;
     }
@@ -190,7 +191,7 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 28px;
-      border: 4px solid var(--green-pale);
+      border: 4px solid var(--green-dark);
       box-shadow: 0 8px 32px rgba(27,67,50,0.18);
     }
 
@@ -322,6 +323,33 @@
       color: rgba(255,255,255,0.45);
     }
 
+    /* ── HERO IMAGE CLIP ─────────────────────────────────────── */
+    .hero-img-clip {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 55vw;
+      height: 100%;
+      background: url('AdobeStock_533241162.jpeg') center/cover no-repeat;
+      clip-path: polygon(0% 0, 100% 0, 100% 100%, 60% 100%);
+      opacity: 0.28;
+      mix-blend-mode: luminosity;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .geo-cover {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 200px;
+      height: 130px;
+      background: var(--green-dark);
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
     /* ── ACCENT BARS (linker Seitenrand) ─────────────────── */
     #accent-left {
       position: fixed;
@@ -432,7 +460,7 @@
       <a href="index_german.html" class="active">Startseite</a>
       <a href="cv_german.html">Lebenslauf</a>
       <a href="https://survivalguide.4lima.de" target="_blank" rel="noopener">Student Guide</a>
-      <a href="#">Interessen</a>
+      <a href="interests.html">Interessen</a>
     </div>
     <div class="lang-switcher">
       <div class="lang-btn" tabindex="0" role="button" aria-label="Sprache">🇩🇪</div>
@@ -451,6 +479,8 @@
       <div class="b2"></div>
       <div class="b3"></div>
     </div>
+    <div class="hero-img-clip"></div>
+    <div class="geo-cover"></div>
     <h1>
       Kris<br>Mischer
       <span>Student an der Universität Bielefeld</span>
