@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="es">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -290,7 +290,6 @@
       font-weight: 600;
     }
 
-    /* highlight pills */
     .pill {
       display: inline-block;
       background: var(--green-pale);
@@ -322,7 +321,7 @@
       color: rgba(255,255,255,0.45);
     }
 
-    /* ── ACCENT BARS (linker Seitenrand) ─────────────────── */
+    /* ── ACCENT BARS ──────────────────────────────────────────── */
     #accent-left {
       position: fixed;
       left: 0;
@@ -335,9 +334,7 @@
       flex-direction: column;
     }
 
-    #accent-left .bar {
-      flex: 1;
-    }
+    #accent-left .bar { flex: 1; }
 
     #accent-left .bar:nth-child(1) { background: var(--green-dark);  opacity: 0.85; }
     #accent-left .bar:nth-child(2) { background: var(--green-mid);   opacity: 0.65; }
@@ -409,6 +406,7 @@
     @media (max-width: 800px) {
       #hero { padding: 0 28px 36px; }
       #hero h1 { font-size: 44pt; }
+      #hero h1 span { font-size: 22pt; }
       #main { flex-direction: column; padding: 36px 28px 60px; }
       .sidebar { flex: none; padding-right: 0; padding-bottom: 36px; }
       .text-col { border-left: none; border-top: 3px solid var(--green-pale); padding-left: 0; padding-top: 36px; }
@@ -417,7 +415,6 @@
 </head>
 <body>
 
-  <!-- Akzentbalken: linker Seitenrand -->
   <div id="accent-left" aria-hidden="true">
     <div class="bar"></div>
     <div class="bar"></div>
@@ -429,16 +426,16 @@
   <nav id="navbar">
     <div class="nav-brand">Kris Mischer</div>
     <div class="nav-links">
-      <a href="index_german.html" class="active">Startseite</a>
-      <a href="cv_german.html">Lebenslauf</a>
+      <a href="index_spanish.html" class="active">Inicio</a>
+      <a href="cv.html">Curriculum Vitae</a>
       <a href="https://survivalguide.4lima.de" target="_blank" rel="noopener">Student Guide</a>
-      <a href="#">Interessen</a>
+      <a href="#">Intereses</a>
     </div>
     <div class="lang-switcher">
-      <div class="lang-btn" tabindex="0" role="button" aria-label="Sprache">🇩🇪</div>
+      <div class="lang-btn" tabindex="0" role="button" aria-label="Idioma">🇪🇸</div>
       <div class="lang-dropdown"><div class="lang-dropdown-inner">
         <a href="index.html">🇬🇧 English</a>
-        <a href="index_spanish.html">🇪🇸 Español</a>
+        <a href="index_german.html">🇩🇪 Deutsch</a>
         <a href="index_french.html">🇫🇷 Français</a>
         <a href="index_portuguese.html">🇵🇹 Português</a>
       </div></div>
@@ -453,7 +450,7 @@
     </div>
     <h1>
       Kris<br>Mischer
-      <span>Student an der Universität Bielefeld</span>
+      <span>Estudiante en la Universidad de Bielefeld</span>
     </h1>
   </section>
 
@@ -468,56 +465,57 @@
       </div>
 
       <div class="contact-block">
-        <div class="label">Kontakt</div>
+        <div class="label">Contacto</div>
         <p>
           <a href="mailto:kristoph.mischer@uni-bielefeld.de" style="white-space:nowrap">kristoph.mischer@uni-bielefeld.de</a>
         </p>
       </div>
 
-      <a class="btn-cv" href="cv_german.html">→ Lebenslauf</a>
+      <a class="btn-cv" href="cv.html">→ Curriculum Vitae</a>
     </aside>
 
     <main class="text-col">
-      <div class="section-label">Über mich</div>
+      <div class="section-label">Sobre mí</div>
 
       <p style="font-family: 'Barlow Condensed', sans-serif; font-size: 22pt; font-weight: 700; color: var(--green-dark); letter-spacing: 1px; margin-bottom: 20px;">
-        Hallo, ich bin Kris!
+        ¡Hola, soy Kris!
       </p>
 
       <p>
-        Ich habe <strong>Biologie</strong> an der Universität Bielefeld studiert. Ich beschäftige mich mit den Geisteswissenschaften, da Sprachenlernen eine meiner großen Leidenschaften ist, und ich mich sehr für internationale Politik interessiere.
+        Estudié <strong>Biología</strong> en la Universidad de Bielefeld. Me estoy adentrando en las humanidades, ya que el aprendizaje de idiomas es una de mis grandes pasiones, y me interesa mucho la política internacional.
       </p>
 
       <p>
-        Derzeit bin ich <strong>Referent für Internationales &amp; Migration</strong> im
-        <strong>Allgemeinen Studierendenausschuss (AStA) der Universität Bielefeld</strong>.
-        Ich setze mich für die Interessen internationaler Studierender ein und arbeite eng mit
-        universitären Einrichtungen und Organisationen wie dem Internationalen Studierendenrat (ISR)
-        und dem Erasmus Student Network (ESN) zusammen.
+        Actualmente, soy Referente del <strong>Departamento de Asuntos Internacionales</strong> del
+        <strong>Comité General de Estudiantes (AStA) de la Universidad de Bielefeld</strong>.
+        Defiendo los intereses de los estudiantes internacionales y colaboro estrechamente con
+        instituciones y organizaciones universitarias como el Consejo Internacional de Estudiantes (ISR)
+        y la Red de Estudiantes Erasmus (ESN).
       </p>
 
       <p>
-        Seit Kurzem bin ich außerdem Mitglied des <strong>Vorstands des Fremdsprachenzentrums (FSZ)</strong>
-        der Universität Bielefeld sowie in der <strong>Kommission für Studium und Lehre</strong>.
-        Darüber hinaus bin ich Mentor im International Mentoring Programme der Universität Bielefeld
-        und unterstütze neu ankommende internationale Studierende dabei, sich in Bielefeld und an der
-        Universität einzuleben.
+        Desde hace poco, también soy miembro de la <strong>Junta del Centro de Idiomas (FSZ)</strong> de la
+        Universidad de Bielefeld y del <strong>Comité de Estudios y Docencia</strong>. Además,
+        soy mentor en el Programa Internacional de Mentoría de la Universidad de Bielefeld,
+        apoyando a los estudiantes internacionales recién llegados en su adaptación a la vida en
+        Bielefeld y en la universidad.
       </p>
 
-      <div class="section-label" style="margin-top: 24px;">Interessen</div>
+      <div class="section-label" style="margin-top: 24px;">Intereses</div>
       <div class="pills">
-        <span class="pill">Umweltschutz</span>
-        <span class="pill">Klimawandel</span>
-        <span class="pill">Ökologie</span>
-        <span class="pill">Mehrsprachigkeit</span>
-        <span class="pill">Etymologie</span>
-        <span class="pill">Linguistik</span>
-        <span class="pill">Romanische Sprachen</span>
-        <span class="pill">Internationale Zusammenarbeit</span>
-        <span class="pill">Internationale Politik</span>
-        <span class="pill">Interkulturelles Engagement</span>
-        <span class="pill">Ornithologie</span>
-        <span class="pill">Sprachenlernen</span>
+        <span class="pill">Protección Medioambiental</span>
+        <span class="pill">Cambio Climático</span>
+        <span class="pill">Ecología</span>
+        <span class="pill">Multilingüismo</span>
+        <span class="pill">Etimología</span>
+        <span class="pill">Lingüística</span>
+        <span class="pill">Lenguas Románicas</span>
+        <span class="pill">Cooperación Internacional</span>
+        <span class="pill">Política Internacional</span>
+        <span class="pill">Compromiso Intercultural</span>
+        <span class="pill">Ornitología</span>
+        <span class="pill">Aprendizaje de Idiomas</span>
+      </div>
     </main>
 
   </div>
