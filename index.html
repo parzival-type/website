@@ -1,178 +1,435 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kris Mischer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
   <style>
-    /* ── Reset & Base ───────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    body {
-      font-family: Lato, sans-serif;
+    :root {
+      --green-dark:   #1b4332;
+      --green-mid:    #2c6e49;
+      --green-light:  #40916c;
+      --green-pale:   #d8f3dc;
+      --green-mist:   #f0faf3;
+      --text-dark:    #1a1a1a;
+      --text-mid:     #3d3d3d;
+      --text-light:   #6b6b6b;
+      --white:        #ffffff;
+    }
+
+    html, body {
+      font-family: 'Barlow', sans-serif;
       font-size: 11pt;
-      font-weight: 400;
-      line-height: 1.6667;
-      color: #212121;
-      background: #fff;
+      color: var(--text-dark);
+      background: var(--white);
+      min-height: 100vh;
     }
 
-    a {
-      color: #a1004e;
-      text-decoration: underline;
-    }
-    a:hover { color: #c62969; }
-    a:visited { color: #a1004e; }
+    a { color: var(--green-mid); text-decoration: none; }
+    a:hover { color: var(--green-dark); text-decoration: underline; }
 
-    /* ── Fixed Navigation Bar ───────────────────────────────────── */
+    /* ── NAV ─────────────────────────────────────────────────── */
     #navbar {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
-      z-index: 100;
-      background: #212121;
+      z-index: 200;
+      background: var(--green-dark);
       height: 56px;
       display: flex;
       align-items: center;
-      padding: 0 24px;
+      padding: 0 40px;
     }
 
-    #navbar .site-title a {
-      font-family: Lato, sans-serif;
-      font-size: 15pt;
-      font-weight: 300;
-      color: #fff;
+    .nav-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18pt;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      margin-left: auto;
+      display: flex;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      font-size: 9.5pt;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--green-pale);
+      padding: 7px 16px;
+      border-radius: 2px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      background: rgba(255,255,255,0.15);
+      color: var(--white);
       text-decoration: none;
-      letter-spacing: 0.3px;
-    }
-    #navbar .site-title a:hover { color: #fff; }
-
-    /* ── Page Offset below navbar ───────────────────────────────── */
-    #page-content {
-      margin-top: 56px;
     }
 
-    /* ── Hero / Name Section ────────────────────────────────────── */
+    /* ── HERO ────────────────────────────────────────────────── */
     #hero {
-      padding: 60px 48px 32px;
-      background: #fff;
+      margin-top: 56px;
+      min-height: 340px;
+      background: var(--green-dark);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 60px 52px;
+    }
+
+    /* Geometric accent blocks — mirrors the PDF corner motif */
+    .geo-block {
+      position: absolute;
+      right: 0; top: 0;
+      width: 340px;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .geo-block .b1 {
+      position: absolute;
+      top: 0; right: 0;
+      width: 340px; height: 180px;
+      background: var(--green-mid);
+      clip-path: polygon(100% 0, 100% 100%, 0 0);
+    }
+
+    .geo-block .b2 {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 200px; height: 130px;
+      background: var(--green-light);
+      opacity: 0.35;
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
+
+    .geo-block .b3 {
+      position: absolute;
+      top: 20px; right: 40px;
+      width: 120px; height: 120px;
+      border: 3px solid rgba(255,255,255,0.12);
+      transform: rotate(15deg);
     }
 
     #hero h1 {
-      font-family: Lato, sans-serif;
-      font-size: 45pt;
-      font-weight: 300;
-      line-height: 1.1;
-      color: #7f1146;
-      letter-spacing: 0.5px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 72pt;
+      font-weight: 900;
+      line-height: 0.9;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      position: relative;
+      z-index: 2;
     }
 
-    @media (max-width: 479px)  { #hero h1 { font-size: 30pt; } }
-    @media (min-width: 480px) and (max-width: 767px) { #hero h1 { font-size: 38pt; } }
-
-    /* ── Main Two-Column Section ────────────────────────────────── */
-    #intro {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      padding: 32px 48px 64px;
-      max-width: 1280px;
-    }
-
-    #intro .photo-column {
-      flex: 0 0 260px;
-      max-width: 300px;
-    }
-
-    #intro .photo-column img {
-      width: 100%;
-      height: auto;
+    #hero h1 span {
       display: block;
+      color: var(--green-pale);
+      font-weight: 300;
+      font-size: 13pt;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-family: 'Barlow', sans-serif;
+      margin-top: 8px;
+    }
+
+    /* ── GREEN STRIPE ────────────────────────────────────────── */
+    .stripe {
+      height: 7px;
+      background: linear-gradient(90deg, var(--green-mid) 0%, var(--green-light) 60%, var(--green-pale) 100%);
+    }
+
+    /* ── MAIN CONTENT ────────────────────────────────────────── */
+    #main {
+      display: flex;
+      gap: 0;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 60px 80px;
+    }
+
+    /* ── SIDEBAR ─────────────────────────────────────────────── */
+    .sidebar {
+      flex: 0 0 260px;
+      padding-right: 50px;
+    }
+
+    .photo-wrap {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--green-pale);
+      box-shadow: 0 8px 32px rgba(27,67,50,0.18);
+      margin-bottom: 28px;
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
     }
 
-    /* Placeholder box shown when no image is present */
-    #intro .photo-column .photo-placeholder {
-      width: 100%;
-      aspect-ratio: 3/4;
-      background: #e8e8e8;
+    /* Placeholder circle if no image */
+    .photo-placeholder {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #888;
-      font-size: 10pt;
-      text-align: center;
-      border: 2px dashed #ccc;
+      margin-bottom: 28px;
+      border: 4px solid var(--green-pale);
+      box-shadow: 0 8px 32px rgba(27,67,50,0.18);
     }
 
-    #intro .text-column {
-      flex: 1 1 320px;
+    .photo-placeholder span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 52pt;
+      font-weight: 900;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: -2px;
     }
 
-    #intro .text-column p {
-      margin-top: 12px;
-      font-size: 11pt;
-      line-height: 1.6667;
-      color: #212121;
+    .contact-block {
+      margin-top: 8px;
     }
 
-    #intro .text-column p:first-child { margin-top: 0; }
-
-    /* ── Footer ─────────────────────────────────────────────────── */
-    #footer {
-      padding: 20px 48px;
-      background: #f2f2f2;
+    .contact-block .label {
+      font-family: 'Barlow Condensed', sans-serif;
       font-size: 9pt;
-      color: #555;
-      border-top: 1px solid #ddd;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 10px;
+      border-bottom: 2px solid var(--green-pale);
+      padding-bottom: 4px;
     }
 
-    /* ── Responsive ─────────────────────────────────────────────── */
-    @media (max-width: 767px) {
-      #hero  { padding: 40px 24px 24px; }
-      #intro { padding: 24px 24px 48px; flex-direction: column; }
-      #intro .photo-column { flex: none; max-width: 100%; }
+    .contact-block p {
+      font-size: 9.5pt;
+      color: var(--text-mid);
+      line-height: 1.8;
+    }
+
+    .contact-block a {
+      color: var(--green-mid);
+      font-weight: 600;
+    }
+
+    .btn-cv {
+      display: inline-block;
+      margin-top: 20px;
+      background: var(--green-dark);
+      color: var(--white) !important;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 2px;
+      transition: background 0.15s;
+      text-decoration: none !important;
+    }
+
+    .btn-cv:hover {
+      background: var(--green-mid);
+    }
+
+    /* ── TEXT COLUMN ─────────────────────────────────────────── */
+    .text-col {
+      flex: 1;
+      border-left: 3px solid var(--green-pale);
+      padding-left: 50px;
+    }
+
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9pt;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1.5px;
+      background: var(--green-pale);
+    }
+
+    .text-col p {
+      font-size: 11.5pt;
+      line-height: 1.75;
+      color: var(--text-mid);
+      margin-bottom: 16px;
+    }
+
+    .text-col p:last-child { margin-bottom: 0; }
+
+    .text-col p strong {
+      color: var(--green-dark);
+      font-weight: 600;
+    }
+
+    /* highlight pills */
+    .pill {
+      display: inline-block;
+      background: var(--green-pale);
+      color: var(--green-dark);
+      font-size: 9pt;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 2px;
+      letter-spacing: 0.5px;
+      margin: 3px 3px 3px 0;
+    }
+
+    .pills { margin: 12px 0 20px; }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--green-dark);
+      padding: 18px 60px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    footer span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10pt;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 800px) {
+      #hero { padding: 0 28px 36px; }
+      #hero h1 { font-size: 44pt; }
+      #hero h1 span { font-size: 22pt; }
+      #main { flex-direction: column; padding: 36px 28px 60px; }
+      .sidebar { flex: none; padding-right: 0; padding-bottom: 36px; }
+      .text-col { border-left: none; border-top: 3px solid var(--green-pale); padding-left: 0; padding-top: 36px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── Navigation Bar ───────────────────────────────────────── -->
   <nav id="navbar">
-    <div class="site-title">
-      <a href="#">Kris Mischer</a>
+    <div class="nav-brand">Kris Mischer</div>
+    <div class="nav-links">
+      <a href="cv.html">Curriculum Vitae</a>
+      <a href="https://survivalguide.4lima.de" target="_blank" rel="noopener">Student Guide</a>
+      <a href="#">Page 3</a>
     </div>
   </nav>
 
-  <div id="page-content">
+  <section id="hero">
+    <div class="geo-block">
+      <div class="b1"></div>
+      <div class="b2"></div>
+      <div class="b3"></div>
+    </div>
+    <h1>
+      Kris<br>Mischer
+      <span>Student at Bielefeld University</span>
+    </h1>
+  </section>
 
-    <!-- ── Hero: Name ─────────────────────────────────────────── -->
-    <section id="hero">
-      <h1>Kris Mischer</h1>
-    </section>
+  <div class="stripe"></div>
 
-    <!-- ── Intro: Photo + Bio ─────────────────────────────────── -->
-    <section id="intro">
-      <div class="photo-column">
-        <img src="kmischer_photo.jpg" alt="Kris Mischer">
+  <div id="main">
+
+    <aside class="sidebar">
+      <div class="photo-wrap">
+        <img src="kmischer_photo.JPG" alt="Kris Mischer"
+             onerror="this.parentElement.outerHTML='<div class=\'photo-placeholder\'><span>KM</span></div>'">
       </div>
 
-      <div class="text-column">
+      <div class="contact-block">
+        <div class="label">Contact</div>
         <p>
-          Du kannst mich unter <a href="mailto:kristoph.mischer@uni-bielefeld.de">kristoph.mischer(at)uni-bielefeld(dot)de</a> erreichen.
-          Meinen Lebenslauf findest du <a href="kmischer_CV.pdf">hier</a>.
+          <a href="mailto:kristoph.mischer@uni-bielefeld.de">kristoph.mischer@<br>uni-bielefeld.de</a>
         </p>
       </div>
-    </section>
 
-    <!-- ── Footer ──────────────────────────────────────────────── -->
-    <footer id="footer">
-      <span>mischer.net</span>
-    </footer>
+      <a class="btn-cv" href="cv.html">→ Curriculum Vitae</a>
+    </aside>
 
-  </div><!-- /page-content -->
+    <main class="text-col">
+      <div class="section-label">About me</div>
+
+      <p style="font-family: 'Barlow Condensed', sans-serif; font-size: 22pt; font-weight: 700; color: var(--green-dark); letter-spacing: 1px; margin-bottom: 20px;">
+        Hello, I'm Kris!
+      </p>
+
+      <p>
+        I studied <strong>Biology</strong> at Bielefeld University and am now looking to transition
+        into the humanities, as my long-term interest lies in international cooperation and
+        intercultural programmes.
+      </p>
+
+      <p>
+        I am a Referent of the <strong>Department of International Affairs</strong> of the
+        <strong>General Students' Committee (AStA) of Bielefeld University</strong>.
+        I advocate for the interests of international students and work closely with university
+        institutions and organisations such as the International Student Council (ISR) and the
+        Erasmus Student Network (ESN).
+      </p>
+
+      <p>
+        I am also a member of the <strong>Board of the Language Centre (FSZ)</strong> of Bielefeld
+        University and of the <strong>Committee for Studies and Teaching</strong>. Additionally,
+        I am a mentor in the International Mentoring Programme at Bielefeld
+        University, supporting newly arriving international students in settling into life in
+        Bielefeld and at the university.
+      </p>
+
+      <div class="section-label" style="margin-top: 24px;">Interests</div>
+      <div class="pills">
+        <span class="pill">Environmental Protection</span>
+        <span class="pill">Climate Change</span>
+        <span class="pill">Ecology</span>
+        <span class="pill">Multilingualism</span>
+        <span class="pill">Etymology</span>
+        <span class="pill">Linguistics</span>
+        <span class="pill">Romance Languages</span>
+        <span class="pill">International Cooperation</span>
+        <span class="pill">International Politics</span>
+        <span class="pill">Intercultural Engagement</span>
+        <span class="pill">Ornithology</span>
+        <span class="pill">Language Learning</span>
+      </div>
+    </main>
+
+  </div>
+
+  <footer>
+    <span>mischer.net</span>
+    <span style="margin-left:auto; font-size:8pt;">© 2025 Kris Mischer</span>
+  </footer>
 
 </body>
 </html>
