@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kris Mischer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:   #1b4332;
+      --green-mid:    #2c6e49;
+      --green-light:  #40916c;
+      --green-pale:   #d8f3dc;
+      --green-mist:   #f0faf3;
+      --text-dark:    #1a1a1a;
+      --text-mid:     #3d3d3d;
+      --text-light:   #6b6b6b;
+      --white:        #ffffff;
+    }
+
+    html, body {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11pt;
+      color: var(--text-dark);
+      background: var(--white);
+      min-height: 100vh;
+    }
+
+    a { color: var(--green-mid); text-decoration: none; }
+    a:hover { color: var(--green-dark); text-decoration: underline; }
+
+    /* ── NAV ─────────────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 200;
+      background: var(--green-dark);
+      height: 56px;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+    }
+
+    .nav-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18pt;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      margin-left: auto;
+      display: flex;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      font-size: 9.5pt;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--green-pale);
+      padding: 7px 16px;
+      border-radius: 2px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      background: rgba(255,255,255,0.15);
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    #hero {
+      margin-top: 56px;
+      min-height: 340px;
+      background: var(--green-dark);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 60px 52px;
+    }
+
+    .geo-block {
+      position: absolute;
+      right: 0; top: 0;
+      width: 340px;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .geo-block .b1 {
+      position: absolute;
+      top: 0; right: 0;
+      width: 340px; height: 180px;
+      background: var(--green-mid);
+      clip-path: polygon(100% 0, 100% 100%, 0 0);
+    }
+
+    .geo-block .b2 {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 200px; height: 130px;
+      background: var(--green-light);
+      opacity: 0.35;
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
+
+    .geo-block .b3 {
+      position: absolute;
+      top: 20px; right: 40px;
+      width: 120px; height: 120px;
+      border: 3px solid rgba(255,255,255,0.12);
+      transform: rotate(15deg);
+    }
+
+    #hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 72pt;
+      font-weight: 900;
+      line-height: 0.9;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+      position: relative;
+      z-index: 2;
+    }
+
+    #hero h1 span {
+      display: block;
+      color: var(--green-pale);
+      font-weight: 300;
+      font-size: 13pt;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-family: 'Barlow', sans-serif;
+      margin-top: 8px;
+    }
+
+    /* ── GREEN STRIPE ────────────────────────────────────────── */
+    .stripe {
+      height: 7px;
+      background: linear-gradient(90deg, var(--green-mid) 0%, var(--green-light) 60%, var(--green-pale) 100%);
+    }
+
+    /* ── MAIN CONTENT ────────────────────────────────────────── */
+    #main {
+      display: flex;
+      gap: 0;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 64px 60px 80px;
+    }
+
+    /* ── SIDEBAR ─────────────────────────────────────────────── */
+    .sidebar {
+      flex: 0 0 260px;
+      padding-right: 50px;
+    }
+
+    .photo-wrap {
+      width: 280px;
+      height: 310px;
+      border-radius: 68% 32% 54% 46% / 60% 44% 56% 40%;
+      overflow: hidden;
+      border: 4px solid var(--green-pale);
+      box-shadow: 0 8px 32px rgba(27,67,50,0.18);
+      margin-bottom: 28px;
+    }
+
+    .photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-placeholder {
+      width: 280px;
+      height: 310px;
+      border-radius: 68% 32% 54% 46% / 60% 44% 56% 40%;
+      background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+      border: 4px solid var(--green-pale);
+      box-shadow: 0 8px 32px rgba(27,67,50,0.18);
+    }
+
+    .photo-placeholder span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 52pt;
+      font-weight: 900;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: -2px;
+    }
+
+    .contact-block {
+      margin-top: 8px;
+    }
+
+    .contact-block .label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 10px;
+      border-bottom: 2px solid var(--green-pale);
+      padding-bottom: 4px;
+    }
+
+    .contact-block p {
+      font-size: 11pt;
+      color: var(--text-mid);
+      line-height: 1.9;
+    }
+
+    .contact-block a {
+      color: var(--green-mid);
+      font-weight: 600;
+    }
+
+    .btn-cv {
+      display: inline-block;
+      margin-top: 20px;
+      background: var(--green-dark);
+      color: var(--white) !important;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 2px;
+      transition: background 0.15s;
+      text-decoration: none !important;
+    }
+
+    .btn-cv:hover {
+      background: var(--green-mid);
+    }
+
+    /* ── TEXT COLUMN ─────────────────────────────────────────── */
+    .text-col {
+      flex: 1;
+      border-left: 3px solid var(--green-pale);
+      padding-left: 50px;
+    }
+
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 9pt;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1.5px;
+      background: var(--green-pale);
+    }
+
+    .text-col p {
+      font-size: 11.5pt;
+      line-height: 1.75;
+      color: var(--text-mid);
+      margin-bottom: 16px;
+    }
+
+    .text-col p:last-child { margin-bottom: 0; }
+
+    .text-col p strong {
+      color: var(--green-dark);
+      font-weight: 600;
+    }
+
+    /* highlight pills */
+    .pill {
+      display: inline-block;
+      background: var(--green-pale);
+      color: var(--green-dark);
+      font-size: 9pt;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 2px;
+      letter-spacing: 0.5px;
+      margin: 3px 3px 3px 0;
+    }
+
+    .pills { margin: 12px 0 20px; }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--green-dark);
+      padding: 18px 60px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    footer span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10pt;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── ACCENT BARS (linker Seitenrand) ─────────────────── */
+    #accent-left {
+      position: fixed;
+      left: 0;
+      top: 56px;
+      width: 10px;
+      height: calc(100vh - 56px);
+      pointer-events: none;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #accent-left .bar {
+      flex: 1;
+    }
+
+    #accent-left .bar:nth-child(1) { background: var(--green-dark);  opacity: 0.85; }
+    #accent-left .bar:nth-child(2) { background: var(--green-mid);   opacity: 0.65; }
+    #accent-left .bar:nth-child(3) { background: var(--green-light); opacity: 0.45; }
+    #accent-left .bar:nth-child(4) { background: var(--green-pale);  opacity: 0.55; }
+    #accent-left .bar:nth-child(5) { background: var(--green-light); opacity: 0.3;  }
+
+    /* ── LANGUAGE SWITCHER ──────────────────────────────────────── */
+    .lang-switcher {
+      position: relative;
+      margin-left: 10px;
+    }
+
+    .lang-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      cursor: pointer;
+      font-size: 18px;
+      padding: 4px 8px;
+      border-radius: 2px;
+      line-height: 1.3;
+      display: flex;
+      align-items: center;
+      transition: background 0.15s;
+    }
+
+    .lang-btn:hover { background: rgba(255,255,255,0.18); }
+
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: 100%;
+      padding-top: 6px;
+      background: transparent;
+      z-index: 300;
+    }
+
+    .lang-dropdown-inner {
+      background: var(--green-dark);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 2px;
+      min-width: 130px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+
+    .lang-switcher:hover .lang-dropdown,
+    .lang-switcher:focus-within .lang-dropdown { display: block; }
+
+    .lang-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      color: var(--green-pale) !important;
+      font-size: 9.5pt;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      text-decoration: none !important;
+    }
+
+    .lang-dropdown a:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--white) !important;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 800px) {
+      #hero { padding: 0 28px 36px; }
+      #hero h1 { font-size: 44pt; }
+      #main { flex-direction: column; padding: 36px 28px 60px; }
+      .sidebar { flex: none; padding-right: 0; padding-bottom: 36px; }
+      .text-col { border-left: none; border-top: 3px solid var(--green-pale); padding-left: 0; padding-top: 36px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Akzentbalken: linker Seitenrand -->
+  <div id="accent-left" aria-hidden="true">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <nav id="navbar">
+    <div class="nav-brand">Kris Mischer</div>
+    <div class="nav-links">
+      <a href="index_german.html" class="active">Startseite</a>
+      <a href="cv_german.html">Lebenslauf</a>
+      <a href="https://survivalguide.4lima.de" target="_blank" rel="noopener">Student Guide</a>
+      <a href="#">Interessen</a>
+    </div>
+    <div class="lang-switcher">
+      <div class="lang-btn" tabindex="0" role="button" aria-label="Sprache">🇩🇪</div>
+      <div class="lang-dropdown"><div class="lang-dropdown-inner">
+        <a href="index.html">🇬🇧 English</a>
+      </div></div>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="geo-block">
+      <div class="b1"></div>
+      <div class="b2"></div>
+      <div class="b3"></div>
+    </div>
+    <h1>
+      Kris<br>Mischer
+      <span>Student an der Universität Bielefeld</span>
+    </h1>
+  </section>
+
+  <div class="stripe"></div>
+
+  <div id="main">
+
+    <aside class="sidebar">
+      <div class="photo-wrap">
+        <img src="kmischer_photo2.jpg" alt="Kris Mischer"
+             onerror="this.parentElement.outerHTML='<div class=\'photo-placeholder\'><span>KM</span></div>'">
+      </div>
+
+      <div class="contact-block">
+        <div class="label">Kontakt</div>
+        <p>
+          <a href="mailto:kristoph.mischer@uni-bielefeld.de">kristoph.mischer@<br>uni-bielefeld.de</a>
+        </p>
+      </div>
+
+      <a class="btn-cv" href="cv_german.html">→ Lebenslauf</a>
+    </aside>
+
+    <main class="text-col">
+      <div class="section-label">Über mich</div>
+
+      <p style="font-family: 'Barlow Condensed', sans-serif; font-size: 22pt; font-weight: 700; color: var(--green-dark); letter-spacing: 1px; margin-bottom: 20px;">
+        Hallo, ich bin Kris!
+      </p>
+
+      <p>
+        Ich habe <strong>Biologie</strong> an der Universität Bielefeld studiert und beschäftige mich
+        mit den Geisteswissenschaften. Sprachenlernen ist eine meiner größten Leidenschaften, und ich
+        interessiere mich für internationale Politik und transnationale Zusammenarbeit.
+      </p>
+
+      <p>
+        Derzeit bin ich <strong>Referent für Internationales &amp; Migration</strong> im
+        <strong>Allgemeinen Studierendenausschuss (AStA) der Universität Bielefeld</strong>.
+        Ich setze mich für die Interessen internationaler Studierender ein und arbeite eng mit
+        universitären Einrichtungen und Organisationen wie dem Internationalen Studierendenrat (ISR)
+        und dem Erasmus Student Network (ESN) zusammen.
+      </p>
+
+      <p>
+        Seit Kurzem bin ich außerdem Mitglied des <strong>Vorstands des Fremdsprachenzentrums (FSZ)</strong>
+        der Universität Bielefeld sowie in der <strong>Kommission für Studium und Lehre</strong>.
+        Darüber hinaus bin ich Mentor im International Mentoring Programme der Universität Bielefeld
+        und unterstütze neu ankommende internationale Studierende dabei, sich in Bielefeld und an der
+        Universität einzuleben.
+      </p>
+
+      <div class="section-label" style="margin-top: 24px;">Interessen</div>
+      <div class="pills">
+        <span class="pill">Umweltschutz</span>
+        <span class="pill">Klimawandel</span>
+        <span class="pill">Ökologie</span>
+        <span class="pill">Mehrsprachigkeit</span>
+        <span class="pill">Etymologie</span>
+        <span class="pill">Linguistik</span>
+        <span class="pill">Romanische Sprachen</span>
+        <span class="pill">Internationale Zusammenarbeit</span>
+        <span class="pill">Internationale Politik</span>
+        <span class="pill">Interkulturelles Engagement</span>
+        <span class="pill">Ornithologie</span>
+        <span class="pill">Sprachenlernen</span>
+    </main>
+
+  </div>
+
+  <footer>
+    <span>mischer.net</span>
+    <span style="margin-left:auto; font-size:8pt;">© 2026 Kristoph Mischer</span>
+  </footer>
+
+</body>
+</html>

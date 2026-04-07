@@ -167,9 +167,9 @@
     }
 
     .photo-wrap {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
+      width: 280px;
+      height: 310px;
+      border-radius: 68% 32% 54% 46% / 60% 44% 56% 40%;
       overflow: hidden;
       border: 4px solid var(--green-pale);
       box-shadow: 0 8px 32px rgba(27,67,50,0.18);
@@ -182,11 +182,11 @@
       object-fit: cover;
     }
 
-    /* Placeholder circle if no image */
+    /* Placeholder if no image */
     .photo-placeholder {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
+      width: 280px;
+      height: 310px;
+      border-radius: 68% 32% 54% 46% / 60% 44% 56% 40%;
       background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
       display: flex;
       align-items: center;
@@ -323,29 +323,28 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.45);
     }
-    /* ── VINE DECORATION ─────────────────────────────────────── */
-    #vine-left {
+    /* ── ACCENT BARS (left edge decoration) ──────────────────── */
+    #accent-left {
       position: fixed;
       left: 0;
       top: 56px;
-      width: calc(50vw - 550px);
+      width: 10px;
       height: calc(100vh - 56px);
       pointer-events: none;
       z-index: 1;
-      overflow: visible;
       display: flex;
-      justify-content: flex-end;
-      align-items: flex-start;
+      flex-direction: column;
     }
 
-    #vine-left svg {
-      width: 110px;
-      height: 100%;
+    #accent-left .bar {
+      flex: 1;
     }
 
-    @media (max-width: 1322px) {
-      #vine-left { display: none; }
-    }
+    #accent-left .bar:nth-child(1) { background: var(--green-dark);  opacity: 0.85; }
+    #accent-left .bar:nth-child(2) { background: var(--green-mid);   opacity: 0.65; }
+    #accent-left .bar:nth-child(3) { background: var(--green-light); opacity: 0.45; }
+    #accent-left .bar:nth-child(4) { background: var(--green-pale);  opacity: 0.55; }
+    #accent-left .bar:nth-child(5) { background: var(--green-light); opacity: 0.3;  }
 
     /* ── LANGUAGE SWITCHER ──────────────────────────────────────────────── */
     .lang-switcher {
@@ -372,12 +371,17 @@
       display: none;
       position: absolute;
       right: 0;
-      top: calc(100% + 6px);
+      top: 100%;
+      padding-top: 6px;
+      background: transparent;
+      z-index: 300;
+    }
+
+    .lang-dropdown-inner {
       background: var(--green-dark);
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: 2px;
       min-width: 130px;
-      z-index: 300;
       box-shadow: 0 4px 16px rgba(0,0,0,0.3);
     }
 
@@ -415,48 +419,13 @@
 </head>
 <body>
 
-  <!-- Vine decoration: left gutter -->
-  <div id="vine-left" aria-hidden="true">
-    <svg viewBox="0 0 110 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <path id="lf" d="M0,0 C-6,-3 -10,-11 0,-18 C10,-11 6,-3 0,0Z"/>
-      </defs>
-      <!-- Main vine stem -->
-      <path d="M55,900 C50,810 65,720 45,635 C25,550 70,465 50,380 C30,295 65,210 52,125 C43,70 55,30 55,0"
-            fill="none" stroke="#40916c" stroke-width="2.5" stroke-linecap="round" opacity="0.65"/>
-      <!-- y≈820 right -->
-      <path d="M52,820 C62,812 75,808 88,802" fill="none" stroke="#40916c" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-      <use href="#lf" transform="translate(88,802) rotate(38)" fill="#2c6e49" opacity="0.55"/>
-      <use href="#lf" transform="translate(80,799) rotate(20) scale(0.7)" fill="#52b788" opacity="0.4"/>
-      <!-- y≈680 left -->
-      <path d="M48,682 C38,674 24,670 10,664" fill="none" stroke="#40916c" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-      <use href="#lf" transform="translate(10,664) rotate(-32)" fill="#2c6e49" opacity="0.55"/>
-      <use href="#lf" transform="translate(19,661) rotate(-52) scale(0.65)" fill="#52b788" opacity="0.4"/>
-      <!-- tendril y≈628 -->
-      <path d="M46,628 C54,622 61,626 57,620 C53,614 45,617 47,610" fill="none" stroke="#52b788" stroke-width="1" stroke-linecap="round" opacity="0.45"/>
-      <!-- y≈558 right -->
-      <path d="M46,558 C57,550 70,547 83,542" fill="none" stroke="#40916c" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-      <use href="#lf" transform="translate(83,542) rotate(30)" fill="#2c6e49" opacity="0.55"/>
-      <!-- y≈440 left -->
-      <path d="M50,440 C40,432 27,428 13,422" fill="none" stroke="#40916c" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-      <use href="#lf" transform="translate(13,422) rotate(-25)" fill="#2c6e49" opacity="0.55"/>
-      <use href="#lf" transform="translate(22,418) rotate(-45) scale(0.7)" fill="#52b788" opacity="0.38"/>
-      <!-- tendril y≈388 -->
-      <path d="M50,388 C58,382 65,386 61,379 C57,372 49,375 51,368" fill="none" stroke="#52b788" stroke-width="1" stroke-linecap="round" opacity="0.45"/>
-      <!-- y≈322 right -->
-      <path d="M52,322 C62,314 75,311 88,306" fill="none" stroke="#40916c" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-      <use href="#lf" transform="translate(88,306) rotate(28)" fill="#2c6e49" opacity="0.55"/>
-      <!-- y≈208 left -->
-      <path d="M48,208 C38,200 25,196 11,190" fill="none" stroke="#40916c" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-      <use href="#lf" transform="translate(11,190) rotate(-22)" fill="#2c6e49" opacity="0.55"/>
-      <use href="#lf" transform="translate(20,186) rotate(-40) scale(0.65)" fill="#52b788" opacity="0.4"/>
-      <!-- y≈108 right -->
-      <path d="M52,108 C63,100 76,96 89,90" fill="none" stroke="#40916c" stroke-width="1.3" stroke-linecap="round" opacity="0.55"/>
-      <use href="#lf" transform="translate(89,90) rotate(35) scale(0.85)" fill="#2c6e49" opacity="0.5"/>
-      <!-- top sprouts -->
-      <path d="M54,40 C60,33 68,28 76,22" fill="none" stroke="#40916c" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
-      <use href="#lf" transform="translate(76,22) rotate(42) scale(0.65)" fill="#2c6e49" opacity="0.45"/>
-    </svg>
+  <!-- Accent bars: left edge decoration -->
+  <div id="accent-left" aria-hidden="true">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
   </div>
 
   <nav id="navbar">
@@ -468,10 +437,10 @@
       <a href="#">Interests</a>
     </div>
     <div class="lang-switcher">
-      <button class="lang-btn" aria-label="Language">🇬🇧</button>
-      <div class="lang-dropdown">
-        <a href="deutsch.html">🇩🇪 Deutsch</a>
-      </div>
+      <div class="lang-btn" tabindex="0" role="button" aria-label="Language">🇬🇧</div>
+      <div class="lang-dropdown"><div class="lang-dropdown-inner">
+        <a href="index_german.html">🇩🇪 Deutsch</a>
+      </div></div>
     </div>
   </nav>
 
@@ -516,12 +485,12 @@
 
       <p>
         I studied <strong>Biology</strong> at Bielefeld University, and am looking into the
-        humanities. Language learning is one of my greatest passions, and I am deeply
-        committed to international cooperation and intercultural programmes.
+        humanities. Language learning is one of my greatest passions, and I am interested in
+        international politics and transnational cooperations.
       </p>
 
       <p>
-        I am a Referent of the <strong>Department of International Affairs</strong> of the
+        Currently, I am a Referent of the <strong>Department of International Affairs</strong> of the
         <strong>General Students' Committee (AStA) of Bielefeld University</strong>.
         I advocate for the interests of international students and work closely with university
         institutions and organisations such as the International Student Council (ISR) and the
@@ -529,7 +498,7 @@
       </p>
 
       <p>
-        I am also a member of the <strong>Board of the Language Centre (FSZ)</strong> of Bielefeld
+        As of recently, I am also a member of the <strong>Board of the Language Centre (FSZ)</strong> of Bielefeld
         University and of the <strong>Committee for Studies and Teaching</strong>. Additionally,
         I am a mentor in the International Mentoring Programme at Bielefeld
         University, supporting newly arriving international students in settling into life in
@@ -557,7 +526,7 @@
 
   <footer>
     <span>mischer.net</span>
-    <span style="margin-left:auto; font-size:8pt;">© 2025 Kris Mischer</span>
+    <span style="margin-left:auto; font-size:8pt;">© 2026 Kristoph Mischer</span>
   </footer>
 
 </body>

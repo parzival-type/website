@@ -430,12 +430,17 @@
       display: none;
       position: absolute;
       right: 0;
-      top: calc(100% + 6px);
+      top: 100%;
+      padding-top: 6px;
+      background: transparent;
+      z-index: 300;
+    }
+
+    .lang-dropdown-inner {
       background: var(--green-dark);
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: 2px;
       min-width: 130px;
-      z-index: 300;
       box-shadow: 0 4px 16px rgba(0,0,0,0.3);
     }
 
@@ -477,17 +482,17 @@
 <body>
 
   <nav id="navbar">
-    <a class="nav-brand" href="deutsch.html">Kris Mischer</a>
+    <a class="nav-brand" href="index_german.html">Kris Mischer</a>
     <div class="nav-links">
-      <a href="deutsch.html">Startseite</a>
+      <a href="index_german.html">Startseite</a>
       <a href="cv_german.html" class="active">Lebenslauf</a>
       <a href="https://survivalguide.4lima.de" target="_blank">Student Guide</a>
       <a href="#">Seite 4</a>
     </div>    <div class="lang-switcher">
-      <button class="lang-btn" aria-label="Sprache">🇩🇪</button>
-      <div class="lang-dropdown">
+      <div class="lang-btn" tabindex="0" role="button" aria-label="Sprache">🇩🇪</div>
+      <div class="lang-dropdown"><div class="lang-dropdown-inner">
         <a href="cv.html">🇬🇧 English</a>
-      </div>
+      </div></div>
     </div>  </nav>
 
   <section id="hero">
@@ -498,8 +503,8 @@
     </div>
     <div id="hero-content">
       <h1>
-        Kris Mischer
-        <span>Lebenslauf</span>
+        Lebenslauf
+        <span>Kris Mischer</span>
       </h1>
       <div class="hero-contact">
         <span><a href="mailto:kristoph.mischer@uni-bielefeld.de">kristoph.mischer@uni-bielefeld.de</a></span>
@@ -670,9 +675,9 @@
         <div class="cv-entry">
           <div class="cv-period">09/2022 – 07/2023</div>
           <div class="cv-details">
-            <strong>Wissenschaftliche Mitarbeit – Verhaltensforschung</strong>
+            <strong>Wissenschaftliche Hilfskraft – Verhaltensbiologie</strong>
             <div class="inst">Departamento de Ciências da Vida, Laboratório de Etologia · Universidade de Coimbra, Portugal</div>
-            <div class="sub">Universitäre Forschung im Rahmen des ERASMUS+-Aufenthalts</div>
+            <div class="sub">Forschungsarbeit zur Bachelorarbeit im Rahmen des ERASMUS+-Aufenthalts</div>
           </div>
         </div>
 
@@ -729,7 +734,7 @@
 
   <footer>
     <span>mischer.net</span>
-    <span style="margin-left:auto; font-size:8pt;">© 2025 Kris Mischer</span>
+    <span style="margin-left:auto; font-size:8pt;">© 2026 Kristoph Mischer</span>
   </footer>
 
 </body>
