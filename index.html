@@ -210,7 +210,7 @@
 
     .contact-block .label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 9pt;
+      font-size: 10pt;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
@@ -221,9 +221,9 @@
     }
 
     .contact-block p {
-      font-size: 9.5pt;
+      font-size: 11pt;
       color: var(--text-mid);
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
     .contact-block a {
@@ -323,6 +323,84 @@
       text-transform: uppercase;
       color: rgba(255,255,255,0.45);
     }
+    /* ── VINE DECORATION ─────────────────────────────────────── */
+    #vine-left {
+      position: fixed;
+      left: 0;
+      top: 56px;
+      width: calc(50vw - 550px);
+      height: calc(100vh - 56px);
+      pointer-events: none;
+      z-index: 1;
+      overflow: visible;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+
+    #vine-left svg {
+      width: 110px;
+      height: 100%;
+    }
+
+    @media (max-width: 1322px) {
+      #vine-left { display: none; }
+    }
+
+    /* ── LANGUAGE SWITCHER ──────────────────────────────────────────────── */
+    .lang-switcher {
+      position: relative;
+      margin-left: 10px;
+    }
+
+    .lang-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      cursor: pointer;
+      font-size: 18px;
+      padding: 4px 8px;
+      border-radius: 2px;
+      line-height: 1.3;
+      display: flex;
+      align-items: center;
+      transition: background 0.15s;
+    }
+
+    .lang-btn:hover { background: rgba(255,255,255,0.18); }
+
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      background: var(--green-dark);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 2px;
+      min-width: 130px;
+      z-index: 300;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+
+    .lang-switcher:hover .lang-dropdown,
+    .lang-switcher:focus-within .lang-dropdown { display: block; }
+
+    .lang-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      color: var(--green-pale) !important;
+      font-size: 9.5pt;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      text-decoration: none !important;
+    }
+
+    .lang-dropdown a:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--white) !important;
+    }
 
     /* ── RESPONSIVE ─────────────────────────────────────────── */
     @media (max-width: 800px) {
@@ -337,12 +415,63 @@
 </head>
 <body>
 
+  <!-- Vine decoration: left gutter -->
+  <div id="vine-left" aria-hidden="true">
+    <svg viewBox="0 0 110 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <path id="lf" d="M0,0 C-6,-3 -10,-11 0,-18 C10,-11 6,-3 0,0Z"/>
+      </defs>
+      <!-- Main vine stem -->
+      <path d="M55,900 C50,810 65,720 45,635 C25,550 70,465 50,380 C30,295 65,210 52,125 C43,70 55,30 55,0"
+            fill="none" stroke="#40916c" stroke-width="2.5" stroke-linecap="round" opacity="0.65"/>
+      <!-- y≈820 right -->
+      <path d="M52,820 C62,812 75,808 88,802" fill="none" stroke="#40916c" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      <use href="#lf" transform="translate(88,802) rotate(38)" fill="#2c6e49" opacity="0.55"/>
+      <use href="#lf" transform="translate(80,799) rotate(20) scale(0.7)" fill="#52b788" opacity="0.4"/>
+      <!-- y≈680 left -->
+      <path d="M48,682 C38,674 24,670 10,664" fill="none" stroke="#40916c" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      <use href="#lf" transform="translate(10,664) rotate(-32)" fill="#2c6e49" opacity="0.55"/>
+      <use href="#lf" transform="translate(19,661) rotate(-52) scale(0.65)" fill="#52b788" opacity="0.4"/>
+      <!-- tendril y≈628 -->
+      <path d="M46,628 C54,622 61,626 57,620 C53,614 45,617 47,610" fill="none" stroke="#52b788" stroke-width="1" stroke-linecap="round" opacity="0.45"/>
+      <!-- y≈558 right -->
+      <path d="M46,558 C57,550 70,547 83,542" fill="none" stroke="#40916c" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      <use href="#lf" transform="translate(83,542) rotate(30)" fill="#2c6e49" opacity="0.55"/>
+      <!-- y≈440 left -->
+      <path d="M50,440 C40,432 27,428 13,422" fill="none" stroke="#40916c" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      <use href="#lf" transform="translate(13,422) rotate(-25)" fill="#2c6e49" opacity="0.55"/>
+      <use href="#lf" transform="translate(22,418) rotate(-45) scale(0.7)" fill="#52b788" opacity="0.38"/>
+      <!-- tendril y≈388 -->
+      <path d="M50,388 C58,382 65,386 61,379 C57,372 49,375 51,368" fill="none" stroke="#52b788" stroke-width="1" stroke-linecap="round" opacity="0.45"/>
+      <!-- y≈322 right -->
+      <path d="M52,322 C62,314 75,311 88,306" fill="none" stroke="#40916c" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      <use href="#lf" transform="translate(88,306) rotate(28)" fill="#2c6e49" opacity="0.55"/>
+      <!-- y≈208 left -->
+      <path d="M48,208 C38,200 25,196 11,190" fill="none" stroke="#40916c" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+      <use href="#lf" transform="translate(11,190) rotate(-22)" fill="#2c6e49" opacity="0.55"/>
+      <use href="#lf" transform="translate(20,186) rotate(-40) scale(0.65)" fill="#52b788" opacity="0.4"/>
+      <!-- y≈108 right -->
+      <path d="M52,108 C63,100 76,96 89,90" fill="none" stroke="#40916c" stroke-width="1.3" stroke-linecap="round" opacity="0.55"/>
+      <use href="#lf" transform="translate(89,90) rotate(35) scale(0.85)" fill="#2c6e49" opacity="0.5"/>
+      <!-- top sprouts -->
+      <path d="M54,40 C60,33 68,28 76,22" fill="none" stroke="#40916c" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <use href="#lf" transform="translate(76,22) rotate(42) scale(0.65)" fill="#2c6e49" opacity="0.45"/>
+    </svg>
+  </div>
+
   <nav id="navbar">
     <div class="nav-brand">Kris Mischer</div>
     <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
       <a href="cv.html">Curriculum Vitae</a>
       <a href="https://survivalguide.4lima.de" target="_blank" rel="noopener">Student Guide</a>
-      <a href="#">Page 3</a>
+      <a href="#">Interests</a>
+    </div>
+    <div class="lang-switcher">
+      <button class="lang-btn" aria-label="Language">🇬🇧</button>
+      <div class="lang-dropdown">
+        <a href="deutsch.html">🇩🇪 Deutsch</a>
+      </div>
     </div>
   </nav>
 
@@ -364,7 +493,7 @@
 
     <aside class="sidebar">
       <div class="photo-wrap">
-        <img src="kmischer_photo.JPG" alt="Kris Mischer"
+        <img src="kmischer_photo2.jpg" alt="Kris Mischer"
              onerror="this.parentElement.outerHTML='<div class=\'photo-placeholder\'><span>KM</span></div>'">
       </div>
 
@@ -386,9 +515,9 @@
       </p>
 
       <p>
-        I studied <strong>Biology</strong> at Bielefeld University and am now looking to transition
-        into the humanities, as my long-term interest lies in international cooperation and
-        intercultural programmes.
+        I studied <strong>Biology</strong> at Bielefeld University, and am looking into the
+        humanities. Language learning is one of my greatest passions, and I am deeply
+        committed to international cooperation and intercultural programmes.
       </p>
 
       <p>

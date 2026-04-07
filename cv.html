@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Curriculum Vitae – Kris Mischer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;600;700;900&family=Barlow+Condensed:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:   #1b4332;
+      --green-mid:    #2c6e49;
+      --green-light:  #40916c;
+      --green-pale:   #d8f3dc;
+      --green-mist:   #f0faf3;
+      --text-dark:    #1a1a1a;
+      --text-mid:     #3d3d3d;
+      --text-light:   #6b6b6b;
+      --white:        #ffffff;
+    }
+
+    html, body {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11pt;
+      color: var(--text-dark);
+      background: var(--white);
+      min-height: 100vh;
+    }
+
+    a { color: var(--green-mid); text-decoration: none; }
+    a:hover { color: var(--green-dark); text-decoration: underline; }
+
+    /* ── NAV ─────────────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 200;
+      background: var(--green-dark);
+      height: 56px;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+    }
+
+    .nav-brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18pt;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none !important;
+    }
+
+    .nav-links {
+      margin-left: auto;
+      display: flex;
+      gap: 4px;
+    }
+
+    .nav-links a {
+      font-size: 9.5pt;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--green-pale);
+      padding: 7px 16px;
+      border-radius: 2px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .nav-links a:hover, .nav-links a.active {
+      background: rgba(255,255,255,0.15);
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    #hero {
+      margin-top: 56px;
+      min-height: 240px;
+      background: var(--green-dark);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 0 60px 44px;
+    }
+
+    .geo-block {
+      position: absolute;
+      right: 0; top: 0;
+      width: 340px;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .geo-block .b1 {
+      position: absolute;
+      top: 0; right: 0;
+      width: 300px; height: 160px;
+      background: var(--green-mid);
+      clip-path: polygon(100% 0, 100% 100%, 0 0);
+    }
+
+    .geo-block .b2 {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 180px; height: 100px;
+      background: var(--green-light);
+      opacity: 0.35;
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
+
+    .geo-block .b3 {
+      position: absolute;
+      top: 18px; right: 38px;
+      width: 100px; height: 100px;
+      border: 3px solid rgba(255,255,255,0.12);
+      transform: rotate(15deg);
+    }
+
+    #hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    #hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 52pt;
+      font-weight: 900;
+      line-height: 0.9;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: -1px;
+    }
+
+    #hero h1 span {
+      display: block;
+      color: var(--green-pale);
+      font-weight: 300;
+      font-size: 24pt;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      font-family: 'Barlow', sans-serif;
+      margin-top: 6px;
+    }
+
+    .hero-contact {
+      margin-top: 14px;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .hero-contact span {
+      font-size: 9.5pt;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.3px;
+    }
+
+    .hero-contact a {
+      color: var(--green-pale);
+      font-weight: 600;
+    }
+
+    /* ── GREEN STRIPE ─────────────────────────────────────────── */
+    .stripe {
+      height: 7px;
+      background: linear-gradient(90deg, var(--green-mid) 0%, var(--green-light) 60%, var(--green-pale) 100%);
+    }
+
+    /* ── PDF DOWNLOAD BAR ─────────────────────────────────────── */
+    .pdf-bar {
+      background: var(--green-mist);
+      padding: 12px 60px;
+      border-bottom: 1px solid var(--green-pale);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .pdf-bar a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10pt;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--green-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ── LAYOUT ────────────────────────────────────────────────── */
+    #cv-layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 56px 60px 80px;
+      gap: 0;
+    }
+
+    /* ── LEFT SIDEBAR ──────────────────────────────────────────── */
+    .cv-sidebar {
+      flex: 0 0 220px;
+      padding-right: 44px;
+      border-right: 3px solid var(--green-pale);
+    }
+
+    .cv-sidebar .photo-wrap {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--green-pale);
+      box-shadow: 0 6px 24px rgba(27,67,50,0.18);
+      margin-bottom: 28px;
+    }
+
+    .cv-sidebar .photo-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .cv-sidebar .photo-placeholder {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 28px;
+      border: 4px solid var(--green-pale);
+      box-shadow: 0 6px 24px rgba(27,67,50,0.18);
+    }
+
+    .cv-sidebar .photo-placeholder span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 40pt; font-weight: 900;
+      color: rgba(255,255,255,0.5); letter-spacing: -2px;
+    }
+
+    /* sidebar section heading */
+    .sb-heading {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 8.5pt;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      border-bottom: 2px solid var(--green-pale);
+      padding-bottom: 5px;
+      margin-bottom: 12px;
+      margin-top: 24px;
+    }
+
+    .sb-heading:first-of-type { margin-top: 0; }
+
+    .sb-item {
+      font-size: 9.5pt;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .sb-item strong {
+      display: block;
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .sb-item .level {
+      font-size: 9pt;
+      color: var(--text-light);
+    }
+
+    /* dot meter */
+    .dots {
+      display: flex;
+      gap: 4px;
+      margin: 3px 0 5px;
+    }
+
+    .dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--green-pale);
+    }
+
+    .dot.filled { background: var(--green-mid); }
+
+    .sb-cert {
+      font-size: 8.5pt;
+      color: var(--text-light);
+      font-style: italic;
+    }
+
+    /* ── MAIN CV BODY ──────────────────────────────────────────── */
+    .cv-body {
+      flex: 1;
+      padding-left: 50px;
+    }
+
+    /* ── SECTION ───────────────────────────────────────────────── */
+    .cv-section {
+      margin-bottom: 44px;
+    }
+
+    .cv-section:last-child { margin-bottom: 0; }
+
+    .section-heading {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11pt;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--green-dark);
+      padding: 8px 16px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* little accent triangle on right */
+    .section-heading::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 0;
+      width: 0; height: 0;
+      border-top: 37px solid var(--green-mid);
+      border-left: 20px solid transparent;
+    }
+
+    /* ── CV ENTRY ──────────────────────────────────────────────── */
+    .cv-entry {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eaf4ee;
+    }
+
+    .cv-entry:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .cv-period {
+      flex: 0 0 148px;
+      font-size: 9pt;
+      font-weight: 600;
+      color: var(--green-mid);
+      padding-top: 3px;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    .cv-details strong {
+      font-size: 11.5pt;
+      font-weight: 700;
+      color: var(--text-dark);
+      display: block;
+      line-height: 1.3;
+    }
+
+    .cv-details .inst {
+      font-size: 10pt;
+      color: var(--text-mid);
+      margin-top: 2px;
+    }
+
+    .cv-details .sub {
+      font-size: 9.5pt;
+      color: var(--text-light);
+      margin-top: 1px;
+    }
+
+    .cv-details .note {
+      font-size: 9pt;
+      color: var(--green-light);
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────────── */
+    footer {
+      background: var(--green-dark);
+      padding: 18px 60px;
+      display: flex;
+      align-items: center;
+    }
+
+    footer span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 10pt;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── LANGUAGE SWITCHER ──────────────────────────────────────── */
+    .lang-switcher {
+      position: relative;
+      margin-left: 10px;
+    }
+
+    .lang-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      cursor: pointer;
+      font-size: 18px;
+      padding: 4px 8px;
+      border-radius: 2px;
+      line-height: 1.3;
+      display: flex;
+      align-items: center;
+      transition: background 0.15s;
+    }
+
+    .lang-btn:hover { background: rgba(255,255,255,0.18); }
+
+    .lang-dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      background: var(--green-dark);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 2px;
+      min-width: 130px;
+      z-index: 300;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    }
+
+    .lang-switcher:hover .lang-dropdown,
+    .lang-switcher:focus-within .lang-dropdown { display: block; }
+
+    .lang-dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      color: var(--green-pale) !important;
+      font-size: 9.5pt;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      text-decoration: none !important;
+    }
+
+    .lang-dropdown a:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--white) !important;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────────── */
+    @media (max-width: 860px) {
+      #hero { padding: 0 28px 32px; }
+      #hero h1 { font-size: 36pt; }
+      .pdf-bar { padding: 10px 28px; }
+      #cv-layout { flex-direction: column; padding: 32px 28px 60px; }
+      .cv-sidebar { flex: none; padding-right: 0; border-right: none;
+                    border-bottom: 3px solid var(--green-pale); padding-bottom: 32px; margin-bottom: 36px; }
+      .cv-body { padding-left: 0; }
+      .cv-entry { flex-direction: column; gap: 4px; }
+      .cv-period { flex: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a class="nav-brand" href="index.html">Kris Mischer</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="cv.html" class="active">Curriculum Vitae</a>
+      <a href="https://survivalguide.4lima.de" target="_blank">Student Guide</a>
+      <a href="#">Page 4</a>
+    </div>    <div class="lang-switcher">
+      <button class="lang-btn" aria-label="Language">🇬🇧</button>
+      <div class="lang-dropdown">
+        <a href="cv_german.html">🇩🇪 Deutsch</a>
+      </div>
+    </div>  </nav>
+
+  <section id="hero">
+    <div class="geo-block">
+      <div class="b1"></div>
+      <div class="b2"></div>
+      <div class="b3"></div>
+    </div>
+    <div id="hero-content">
+      <h1>
+        Kris Mischer
+        <span>Curriculum Vitae</span>
+      </h1>
+      <div class="hero-contact">
+        <span><a href="mailto:kristoph.mischer@uni-bielefeld.de">kristoph.mischer@uni-bielefeld.de</a></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="stripe"></div>
+
+  <div class="pdf-bar">
+    <a href="CV_EN.pdf" target="_blank">↓ Download PDF</a>
+    <span style="color: var(--green-light); font-weight: 300; opacity: 0.6;">|</span>
+    <a href="https://www.linkedin.com/in/krismischer/" target="_blank" rel="noopener">↗ LinkedIn</a>
+  </div>
+
+  <div id="cv-layout">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="cv-sidebar">
+
+      <div class="photo-wrap">
+        <img src="kmischer_photo.JPG" alt="Kris Mischer"
+             onerror="this.parentElement.outerHTML='<div class=\'photo-placeholder\'><span>KM</span></div>'">
+      </div>
+
+      <!-- LANGUAGES -->
+      <div class="sb-heading">Languages</div>
+
+      <div class="sb-item">
+        <strong>German</strong>
+        <div class="dots">
+          <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          <div class="dot filled"></div><div class="dot filled"></div>
+        </div>
+        <span class="level">Native language</span>
+      </div>
+
+      <div class="sb-item">
+        <strong>English</strong>
+        <div class="dots">
+          <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          <div class="dot filled"></div><div class="dot filled"></div>
+        </div>
+        <span class="level">C2</span><br>
+        <span class="sb-cert">CAE Cambridge Certificate (Grade A, 206)</span>
+      </div>
+
+      <div class="sb-item">
+        <strong>French</strong>
+        <div class="dots">
+          <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          <div class="dot"></div><div class="dot"></div>
+        </div>
+        <span class="level">B1</span><br>
+        <span class="sb-cert">UNIcert I</span>
+      </div>
+
+      <div class="sb-item">
+        <strong>Portuguese</strong>
+        <div class="dots">
+          <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          <div class="dot"></div><div class="dot"></div>
+        </div>
+        <span class="level">B1</span><br>
+        <span class="sb-cert">Certidão da Universidade de Coimbra</span>
+      </div>
+
+      <div class="sb-item">
+        <strong>Spanish</strong>
+        <div class="dots">
+          <div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div>
+          <div class="dot"></div><div class="dot"></div>
+        </div>
+        <span class="level">B1</span>
+      </div>
+
+    </aside>
+
+    <!-- ── CV BODY ── -->
+    <main class="cv-body">
+
+      <!-- AUSBILDUNG -->
+      <section class="cv-section">
+        <div class="section-heading">Education</div>
+
+        <div class="cv-entry">
+          <div class="cv-period">10/2024 – present</div>
+          <div class="cv-details">
+            <strong>M.Sc. Ecology and Environmental Change</strong>
+            <div class="inst">University of Bielefeld, Bielefeld</div>
+            <div class="note">Preliminary overall grade: 1.2 (very good)</div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-period">10/2020 – 11/2024</div>
+          <div class="cv-details">
+            <strong>B.Sc. Biology</strong>
+            <div class="inst">University of Bielefeld, Bielefeld</div>
+            <div class="sub">Focus: Ecology and Diversity</div>
+            <div class="sub">Bachelor's thesis: <em>Feathered reflections: Exploring behavioural differences in the European serin through mirror and novel object tests</em> — Grade: 1.3</div>
+            <div class="note">Overall grade: 2.3 (good)</div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-period">09/2011 – 06/2019</div>
+          <div class="cv-details">
+            <strong>Abitur (Baccalaureate)</strong>
+            <div class="inst">Gymnasium Leopoldinum, Detmold</div>
+            <div class="note">Average grade: 1.9 · Advanced courses: Biology, Social Sciences</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- UNIVERSITÄRES ENGAGEMENT -->
+      <section class="cv-section">
+        <div class="section-heading">University Involvement</div>
+
+        <div class="cv-entry">
+          <div class="cv-period">09/2025 – present</div>
+          <div class="cv-details">
+            <strong>Officer for International Affairs &amp; Migration</strong>
+            <div class="inst">AStA (General Students' Committee), University of Bielefeld</div>
+            <div class="sub">Political interest representation · Organisation of events and projects for international students · Cooperation with ISR, ESN, CIAS</div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-period">09/2025 – present</div>
+          <div class="cv-details">
+            <strong>Member of the Teaching Commission</strong>
+            <div class="inst">Committee for Studies and Teaching, University of Bielefeld</div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-period">04/2026 – present</div>
+          <div class="cv-details">
+            <strong>Board Member</strong>
+            <div class="inst">Language Centre (FSZ), University of Bielefeld</div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-period">09/2024 – present</div>
+          <div class="cv-details">
+            <strong>Mentor</strong>
+            <div class="inst">International Mentoring Programme, University of Bielefeld</div>
+            <div class="sub">Supporting newly arriving international students with campus orientation, administrative matters and settling in Bielefeld</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BERUFSERFAHRUNG -->
+      <section class="cv-section">
+        <div class="section-heading">Other Work Experience</div>
+
+        <div class="cv-entry">
+          <div class="cv-period">08/2025</div>
+          <div class="cv-details">
+            <strong>Youth Group Leader</strong>
+            <div class="inst">Evangelical Reformed Church Pivitsheide, Detmold</div>
+            <div class="sub">Independent planning and execution of a leisure programme for a youth group in Sweden</div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-period">09/2022 – 07/2023</div>
+          <div class="cv-details">
+            <strong>University Research for Bachelor's Thesis</strong>
+            <div class="inst">Departamento de Ciências da Vida, Laboratório de Etologia · Universidade de Coimbra, Portugal</div>
+            <div class="sub">University research conducted during the ERASMUS+ exchange</div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-period">09/2019 – 02/2020</div>
+          <div class="cv-details">
+            <strong>Federal Voluntary Service (Bundesfreiwilligendienst)</strong>
+            <div class="inst">Fürstin-Pauline-Schule, Detmold</div>
+            <div class="sub">Special needs school for emotional and social development</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AUSLANDSERFAHRUNG -->
+      <section class="cv-section">
+        <div class="section-heading">International Experience</div>
+
+        <div class="cv-entry">
+          <div class="cv-period">03/2024</div>
+          <div class="cv-details">
+            <strong>VII BBMA – Bird Banding and Molt Analysis Workshop</strong>
+            <div class="inst">Instituto Alto Montana · Observatório de Aves da Mantiquera &amp; UFRGS</div>
+            <div class="sub">Itamonte, Minas Gerais, Brazil</div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-period">09/2022 – 07/2023</div>
+          <div class="cv-details">
+            <strong>ERASMUS+</strong>
+            <div class="inst">Universidade de Coimbra, Coimbra, Portugal</div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-period">09/2016</div>
+          <div class="cv-details">
+            <strong>School Exchange</strong>
+            <div class="inst">Lyseon Lukio, Savonlinna, Finland</div>
+          </div>
+        </div>
+
+        <div class="cv-entry">
+          <div class="cv-period">06/2016</div>
+          <div class="cv-details">
+            <strong>School Exchange</strong>
+            <div class="inst">Lancing College, Lancing, United Kingdom</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <footer>
+    <span>mischer.net</span>
+    <span style="margin-left:auto; font-size:8pt;">© 2025 Kris Mischer</span>
+  </footer>
+
+</body>
+</html>
